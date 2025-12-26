@@ -5,17 +5,18 @@ require "markaby"
 require "sqlite3"
 require "tempfile"
 
-# Set export path
-base = ARGV[0] && !ARGV[0].start_with?("-") ? File.expand_path(ARGV[0]) : File.expand_path("~/Desktop")
-base = File.join(base, "tabgroups"); FileUtils.mkdir_p(base)
-
 # Set library path
-app = ARGV.include?("-stp") ? "SafariTechnologyPreview" : "Safari"
-library = File.expand_path("~/Library/Containers/com.apple.#{app}/Data/Library/#{app}")
+# app = ARGV.include?("-stp") ? "SafariTechnologyPreview" : "Safari"
+# library = File.expand_path("~/Library/Containers/com.apple.#{app}/Data/Library/#{app}")
 
 # Copy safari tabs into temporary file
-original = File.expand_path("#{library}/SafariTabs.db")
+# original = File.expand_path("#{library}/SafariTabs.db")
+original = File.expand_path(ARGV[0])
 temporary = Tempfile.new("SafariTabs.db"); FileUtils.cp(original, temporary.path)
+
+# Set export path
+base = ARGV[1] && !ARGV[1].start_with?("-") ? File.expand_path(ARGV[1]) : File.expand_path("~/Desktop")
+base = File.join(base, "tabgroups"); FileUtils.mkdir_p(base)
 
 # Export tab groups
 begin
