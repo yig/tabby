@@ -33,7 +33,7 @@ https://gorails.com/setup/macos/15-sequoia
 2. Open your terminal app.
 3. Run `cd ~/Desktop/tabby` to open the tabby directory.
 4. Run `bundle install` to install dependencies.
-5. Run `ruby tabby.rb` to export your tab groups to the desktop.
+5. Run `ruby tabby.rb` to export your tab groups to the desktop. Add optional arguments to change the database and output directories. For example: `ruby tabby.rb ../SafariTabs-2025-12-01.db ../SafariTabs-2025-12-01/`.
 
 ### 4. Optional steps
 - Need to customize the export location? Just pass a file path to the tabby command.

@@ -6,12 +6,14 @@ require "sqlite3"
 require "tempfile"
 
 # Set library path
-# app = ARGV.include?("-stp") ? "SafariTechnologyPreview" : "Safari"
-# library = File.expand_path("~/Library/Containers/com.apple.#{app}/Data/Library/#{app}")
-
+if ARGV[0] && !ARGV[0].start_with?("-")
+  original = File.expand_path(ARGV[0])
+else
+  app = ARGV.include?("-stp") ? "SafariTechnologyPreview" : "Safari"
+  library = File.expand_path("~/Library/Containers/com.apple.#{app}/Data/Library/#{app}")
+  original = File.expand_path("#{library}/SafariTabs.db")
+end
 # Copy safari tabs into temporary file
-# original = File.expand_path("#{library}/SafariTabs.db")
-original = File.expand_path(ARGV[0])
 temporary = Tempfile.new("SafariTabs.db"); FileUtils.cp(original, temporary.path)
 
 # Set export path
